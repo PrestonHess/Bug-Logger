@@ -1,12 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
+  <div class="home container-fluid">
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  data(){
+    return {}
+  },
+  computed:{},
+  methods:{},
+  components:{}
 };
 </script>
+
+<style scoped>
+
+</style>

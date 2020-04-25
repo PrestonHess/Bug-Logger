@@ -17,15 +17,19 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    profile: {}
+    profile: {},
+    bugs: []
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
+    },
+    setBugs(state, payload) {
+      state.bugs = payload
     }
   },
   actions: {
-    setBearer({}, bearer) {
+    setBearer({ }, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -38,6 +42,18 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+
+
+    // #region --BUG--
+    async createBug({dispatch, commit}, bugData) {
+      try {
+        let res = await api.post('/bugs', bugData)
+        commit("setBugs", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    //#endregion 
   }
 });

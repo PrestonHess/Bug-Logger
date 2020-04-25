@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link class="navbar-brand" :to="{ name: 'Home' }"
-      >AppName</router-link
+      > <img class="bug" src="..\assets\bug2.png"> </router-link
     >
     <button
       class="navbar-toggler"
@@ -32,20 +32,25 @@
         </li>
       </ul>
       <span class="navbar-text">
+        
+        <ReportBug></ReportBug>
+      </span>
+      <span class="navbar-text">
         <button
-          class="btn btn-success"
+          class="btn btn-sm mx-1 btn-success"
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
           Login
         </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-sm mx-1 btn-danger" @click="logout" v-else>Logout</button>
       </span>
     </div>
   </nav>
 </template>
 
 <script>
+import ReportBug from "./ReportBug.vue"
 import axios from "axios";
 import { getUserData } from "@bcwdev/auth0-vue";
 export default {
@@ -62,8 +67,15 @@ export default {
       this.$store.dispatch("resetBearer");
       await this.$auth.logout({returnTo: window.location.origin});
     }
+  },
+  components: {
+    ReportBug
   }
 };
 </script>
 
-<style></style>
+<style>
+.bug{
+  height: 2.5em;
+}
+</style>
