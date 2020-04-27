@@ -2,6 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0Provider from "@bcwdev/auth0provider";
 import { bugsService } from "../services/BugsService";
+import { notesService } from "../services/NotesService";
 
 export class BugsController extends BaseController {
   constructor() {
@@ -12,7 +13,18 @@ export class BugsController extends BaseController {
       .use(auth0Provider.getAuthorizedUserInfo)
       .get("/:id", this.getBug)
       .put("/:id", this.edit)
-      .post("", this.create);
+      .post("", this.create)
+      .post("/:id/Notes", this.createNote);
+  }
+
+  async createNote(req, res, next) {
+    try {
+      req.body.creatorEmail = req.userInfo.email
+      let note = await notesService.create(req.body)
+      return res.send(note)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getBug(req, res, next) {

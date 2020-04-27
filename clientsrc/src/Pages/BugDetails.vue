@@ -7,7 +7,7 @@
           <h1 class="text-capitalize">{{activeBug.title}}</h1>
           <div class="row justify-content-between">
             <div class="col-6">
-              <span>Creator Email :</span>
+              <span>Creator Email : </span>
               <h4 class="inline text-capitalize">{{activeBug.creator.name}}</h4>
             </div>
             <div class="text-right mt-2 pr-5 col-6">
@@ -23,9 +23,10 @@
           </div>
           <div class="row justify-content-lg-center text-right">
             <div class="col-11">
-              <button @click="changeStatus" type="button" class="my-1 mr-n2 btn btn-danger">Close</button>
+              <button v-if="!activeBug.closed" @click="changeStatus" type="button" class="my-1 mr-n2 btn btn-danger">Close</button>
             </div>
           </div>
+          <Notes :bugData="activeBug"></Notes>
         </div>
       </div>
     </div>
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import Notes from '../components/Notes'
 export default {
   name: "BugDetails",
   data() {
@@ -62,7 +64,9 @@ export default {
       });
     }
   },
-  components: {}
+  components: {
+    Notes
+  }
 };
 </script>
 
