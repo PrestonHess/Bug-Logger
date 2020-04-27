@@ -2,6 +2,10 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
 class NotesService {
+  async delete(id, email) {
+    let data = await dbContext.Notes.deleteOne({ _id : id, creatorEmail: email })
+    return data
+  }
   async create(body) {
     let note = await dbContext.Notes.create(body)
     return note

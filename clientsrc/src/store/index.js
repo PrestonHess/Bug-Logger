@@ -108,6 +108,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async deleteNote({dispatch, commit}, note) {
+      try {
+        await api.delete(`notes/${note._id}`)
+        dispatch('getNotes', note.bug)
+      } catch (error) {
+        console.error(error)
+      }
     }
     // //#endregion
   }
