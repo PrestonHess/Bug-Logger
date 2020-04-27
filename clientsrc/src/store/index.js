@@ -48,12 +48,20 @@ export default new Vuex.Store({
     // #region --BUG--
     async createBug({dispatch, commit}, bugData) {
       try {
-        let res = await api.post('/bugs', bugData)
-        commit("setBugs", res.data)
+        let res = await api.post('/bugs', bugData);
+        dispatch('getBugs');
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
+    async getBugs({dispatch, commit}) {
+      try {
+        let res = await api.get('/bugs');
+        commit('setBugs', res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
     //#endregion 
   }
 });
