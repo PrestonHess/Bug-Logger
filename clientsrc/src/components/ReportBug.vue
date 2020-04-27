@@ -31,7 +31,7 @@
                   <span class="input-group-text" id="inputGroup-sizing-sm">Title</span>
                 </div>
                 <input
-                required
+                  required
                   type="text"
                   v-model="bug.title"
                   class="form-control"
@@ -68,6 +68,7 @@ export default {
   methods: {
     reportBug() {
       this.$store.dispatch('createBug', this.bug)
+      this.$router.push({ name: 'BugDetails'})
       this.bug = {}
     }
   },

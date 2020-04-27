@@ -18,7 +18,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     profile: {},
-    bugs: []
+    bugs: [],
+    activeBug: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     setBugs(state, payload) {
       state.bugs = payload
+    },
+    setActiveBug(state, payload) {
+      state.activeBug = payload
     }
   },
   actions: {
@@ -49,6 +53,7 @@ export default new Vuex.Store({
     async createBug({dispatch, commit}, bugData) {
       try {
         let res = await api.post('/bugs', bugData);
+        commit('setActiveBug', res.data);
         dispatch('getBugs');
       } catch (error) {
         console.error(error);
@@ -60,6 +65,23 @@ export default new Vuex.Store({
         commit('setBugs', res.data);
       } catch (error) {
         console.error(error);
+      }
+    },
+    async getBug({dispatch, commit}, bugId) {
+      try {
+        let res = await api.get(`bugs/${bugId}`)
+        commit('setActiveBug', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async editBug({dispatch, commit}, bugData) {
+      try {
+        console.log(bugData)
+        let res = await api.put(`bugs/${bugData._id}`, bugData)
+        dispatch('getBug', bugData._id)
+      } catch (error) {
+        console.error(error)
       }
     }
     //#endregion 

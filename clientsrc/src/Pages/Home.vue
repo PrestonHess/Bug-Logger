@@ -4,11 +4,11 @@
       <div class="col-10 border">
         <div class="row text-uppercase text-center bg-secondary py-1">
           <div class="col-4">Title</div>
-          <div class="col-3">Reported By</div>
+          <div class="col-4">Reported By</div>
           <div class="col-1">Status</div>
-          <div class="col-4">Last Modified</div>
+          <div class="col-3">Last Modified</div>
         </div>
-          <Bug v-for="bug in bugs" :bugData="bug" :key="bug._id" ></Bug>
+          <Bug v-for="(bug, index) in bugs" :bugData="bug" :bugIndex="index" :key="bug._id" ></Bug>
       </div>
     </div>
   </div>

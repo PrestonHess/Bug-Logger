@@ -14,11 +14,19 @@ class BugsService {
     return bugs;
   }
   async findById(id) {
-    let bug = await dbContext.Bugs.findById(id);
+    let bug = await dbContext.Bugs.findById(id).populate(
+      "creator",
+      "name picture"
+    );
     if (!bug) {
       throw new BadRequest("Invalid Id");
     }
     return bug;
+  }
+
+  async edit(id, email, payload) {
+    let bug = await dbContext.Bugs.findByIdAndUpdate({_id: id, creatorEmail: email }, payload, { new: true })
+    return bug
   }
 }
 
