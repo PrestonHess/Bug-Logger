@@ -40,6 +40,9 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.$store.dispatch('getBug', this.$route.params.bugId )
+  },
   computed: {
     activeBug() {
       return this.$store.state.activeBug;

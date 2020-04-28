@@ -29,7 +29,7 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch('getNotes', this.bugData._id)
+    this.$store.dispatch('getNotes', this.$route.params.bugId)
   },
   computed: {
     notes() {
