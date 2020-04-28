@@ -47,7 +47,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" @click.prevent="reportBug" data-dismiss="modal" :to="{ name: 'BugDetails'}" class="btn btn-primary">Submit</button>
+            <button type="submit" @click.prevent="reportBug" data-dismiss="modal" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
@@ -68,7 +68,6 @@ export default {
   methods: {
     reportBug() {
       this.$store.dispatch('createBug', this.bug)
-      this.$router.push({ name: 'BugDetails'})
       this.bug = {}
     }
   },

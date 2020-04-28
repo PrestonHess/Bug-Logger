@@ -21,7 +21,6 @@ export default {
   computed: {},
   methods: {
     displayDate() {
-      console.log(this.displayOpen, !this.bugData.closed)
       let date = this.bugData.updatedAt.split('T')
       return date[0]
     },
