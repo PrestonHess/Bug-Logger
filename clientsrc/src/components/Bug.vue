@@ -16,7 +16,9 @@ export default {
   name: "Bug",
   props: ['bugData', 'bugIndex', 'displayOpen'],
   data() {
-    return {};
+    return {
+      
+    };
   },
   computed: {},
   methods: {
