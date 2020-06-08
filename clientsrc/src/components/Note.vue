@@ -4,7 +4,7 @@
       <div class="col-3">{{noteData.creator.name}}</div>
       <div class="col-8">{{noteData.content}}</div>
       <div class="col-1">
-        <span v-if="this.$store.state.profile.email == this.noteData.creator.email" @click="deleteNote" class="justify-self-end text-danger">&#10006;</span>
+        <span v-if="this.$store.state.profile.email == this.noteData.creator.email && !noteData.closed" @click="deleteNote" class="justify-self-end text-danger">&#10006;</span>
       </div>
     </div>
   </div>

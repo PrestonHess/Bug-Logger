@@ -25,7 +25,7 @@ class BugsService {
   }
 
   async edit(id, email, payload) {
-    let bug = await dbContext.Bugs.findByIdAndUpdate({_id: id, creatorEmail: email }, payload, { new: true })
+    let bug = await dbContext.Bugs.findByIdAndUpdate({ _id: id, creatorEmail: email, closed: false }, payload, { new: true })
     return bug
   }
 }

@@ -25,7 +25,7 @@ export class NotesController extends BaseController {
 
   async getAllById(req, res, next) {
     try {
-        let data = await notesService.findAll({ bug: req.params.id})
+        let data = await notesService.findAll({ bug: req.params.id })
       return res.send(data);
     } catch (error) {
       next(error);

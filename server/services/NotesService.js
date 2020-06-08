@@ -7,6 +7,10 @@ class NotesService {
     return data
   }
   async create(body) {
+    let bug = await dbContext.Bugs.findById(body.bug)
+    if (bug.closed) {
+      throw new BadRequest("Unable to create if bug is closed");
+    }
     let note = await dbContext.Notes.create(body)
     return note
   }
